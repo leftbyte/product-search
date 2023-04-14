@@ -1,2 +1,2 @@
-# product-search
-Generic Product Search System
+# product-seller
+Generic product seller
