@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package com.leftbyte.productseller;
+option go_package = "github.com/leftbyte/product-seller/rpc/productseller";
+
+message Product {
+   string sku = 1;
+   string name = 2;
+   int32 category = 3;
+}
+
+message Products {
+   repeated Product products = 1;
+}
+
+message CreateProductReq {
+   Product product = 1;
+}
+
+message CreateProductResp {
+   int32 status = 1;         // status code: 0 for OK
+   string statusMessage = 2; // more context related to status
+}
+
+message GetProductsReq {
+   optional int32 page = 1;     // default: 1
+   optional int32 limit = 2;    // default: 25
+   optional string sortby = 3;  // default: None
+   optional string sortdir = 4; // default: None
+   string queryName = 5;
+   string queryCategory = 6;
+   string querySKU = 7;
+}
+
+message GetProductsResp {
+   int32 page = 1;
+   int32 numResults = 2; 
+   Products products = 3;
+}
+
+service ProductSeller {
+   rpc CreateProduct(CreateProductReq) returns (CreateProductResp);
+   rpc GetProducts(GetProductsReq) returns (GetProductsResp);
+}
