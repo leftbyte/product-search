@@ -6,7 +6,7 @@ option go_package = "github.com/leftbyte/product-seller/rpc/productseller";
 message Product {
    string sku = 1;
    string name = 2;
-   int32 category = 3;
+   string category = 3;
 }
 
 message Products {
@@ -23,8 +23,8 @@ message CreateProductResp {
 }
 
 message GetProductsReq {
-   optional int32 page = 1;     // default: 1
-   optional int32 limit = 2;    // default: 25
+   optional uint32 page = 1;     // default: 1
+   optional uint32 limit = 2;    // default: 25
    optional string sortby = 3;  // default: None
    optional string sortdir = 4; // default: None
    string query_name = 5;
@@ -33,8 +33,8 @@ message GetProductsReq {
 }
 
 message GetProductsResp {
-   int32 page = 1;
-   int32 num_results = 2; 
+   uint32 page = 1;
+   uint32 num_results = 2; 
    Products products = 3;
 }
 
